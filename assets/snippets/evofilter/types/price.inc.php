@@ -1,35 +1,29 @@
 <?php 
 class price{
 	static $templates = array(
-		'priceTpl'=> '<label for="amount1">от</label>
-                <input type="text" id="amount1" value="" name="min" />
-                <label for="amount2">до</label>
-                <input type="text" id="amount2" value="" name="max" />
-                <div id="slider-range"></div>
-				<script>
-				$(function() {
-	$( "#slider-range" ).slider({
-		range: true,
-		min: [+min+],
-		max: [+max+],
-		values: [ [+min+], [+max+] ],
-		slide: function( event, ui ) {
-			$( "#amount1" ).val(ui.values[ 0 ]);
-			$( "#amount2" ).val(ui.values[ 1 ]);
-		},
-		change: function(event, ui) {
-            $("#filter").submit();
-        }
+		'priceTpl'=> '
+
+ 	<span style="display: inline-block; width: 200px; height:30px;padding: 20px 16px;">
+ 		<input id="[+name+]" type="text" name="[+name+]" value="[+min+];[+max+]" />
+ 	</span>
+	<script>$(function(){
+		$("#filter").BForms("set_from_request");
+		var [+name+]_min=[+min+];
+		var [+name+]_max=[+max+];                 
+		$("#price").slider({
+			from: [+name+]_min,
+			to: [+name+]_max,
+			step: 1,
+			dimension: "&nbsp;грн.",
+			skin: "plastic", 
+			callback :function(){
+				$("#filter").BForms("onsubmit");
+			}});
 		});
-	$( "#amount1" ).val($("#slider-range" ).slider( "values", 0 ));
-	$( "#amount2" ).val($("#slider-range" ).slider( "values", 1 ));
-	
-});
-</script>
-',
+	</script>',
 		
-		
-		'priceOuterTpl'=> '<div class="side-block">
+	'priceOuterTpl'=> '
+				<div class="side-block">
 					<div class="pure-g">
 						<div class="pure-u-1-2"><h2>[+title+]</h2></div>
 						<div class="pure-u-1-2 text-right"> <span class="side-more reset_filter">Сбросить</span> </div>
