@@ -64,8 +64,8 @@ class price{
 		$inparent=!empty($params['parent'])?' AND cont.parent IN('.$params['parent'].')':'';
 		$intemplate=!empty($params['template'])?' AND cont.template='.$params['template']:'';
 
-		$priceTpl = isset($params['priceTpl']) ? $modx->getTpl($params['priceTpl']) : self::$templates['priceTpl'];
-		$priceOuterTpl = isset($params['priceOuterTpl']) ? $modx->getTpl($params['priceOuterTpl']) : self::$templates['priceOuterTpl'];
+		$priceTpl = isset($params['priceTpl']) ? getTpl($params['priceTpl']) : self::$templates['priceTpl'];
+		$priceOuterTpl = isset($params['priceOuterTpl']) ? getTpl($params['priceOuterTpl']) : self::$templates['priceOuterTpl'];
 
 		$resm=$modx->db->query('SELECT min( cast(value as decimal) ) as value FROM '.$pr.'site_tmplvar_contentvalues as c
 			LEFT join '.$pr.'site_content as cont ON (cont.id=c.contentid)

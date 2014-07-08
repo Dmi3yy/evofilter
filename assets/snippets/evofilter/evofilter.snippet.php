@@ -9,11 +9,30 @@
  * --Добавить еще 1 тип фильтра Цвет(тоже что и чекбоксы только с доп выводом цвета)
  * --добавить проверку что б удалить товары все без цены
  */
+//fix  modx->getTpl;
+if(method_exists($modx,'getTpl')){ 
+   	function getTpl($tpl) {
+   		global $modx;
+   		return $modx->getTpl($tpl);
+   	}
+}else{
+	function getTpl($tpl){
+		global $modx;
+		if(strpos($tpl,'@CODE:')!==false){
+			$tpl=str_replace('@CODE:','',$tpl);
+		}else {
+			$tpl=$modx->getChunk($tpl);
+		}
+		return $tpl;
+	}
+}
+
+
 //параметры по умолчанию 	
 $filters = isset($filters) ? $filters : 'evoFilter';	
 $params['parent'] = isset($parent) ? $parent : $modx->documentIdentifier;
 $type = isset($type) ? $type : 'filters';
-$outerTpl = isset($outerTpl) ? $modx->getTpl($outerTpl) : '<form id="filter" class="pure-form velo-form filter-form" action="[~[*id*]~]"> [+wrapper+]	</form>';
+$outerTpl = isset($outerTpl) ? getTpl($outerTpl) : '<form id="filter" class="pure-form velo-form filter-form" action="[~[*id*]~]"> [+wrapper+]	</form>';
 if (isset($select)){
 	$select = ''; 
 }else{

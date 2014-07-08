@@ -26,8 +26,8 @@ class select{
 		$inparent=!empty($params['parent'])?' AND cont.parent IN('.$params['parent'].')':'';
 		$intemplate=!empty($params['template'])?' AND cont.template='.$params['template']:'';
 
-		$selectTpl = isset($params['selectTpl']) ? $modx->getTpl($params['selectTpl']) : self::$templates['selectTpl'];
-		$selectOuterTpl = isset($params['selectOuterTpl']) ? $modx->getTpl($params['selectOuterTpl']) : self::$templates['selectOuterTpl'];
+		$selectTpl = isset($params['selectTpl']) ? getTpl($params['selectTpl']) : self::$templates['selectTpl'];
+		$selectOuterTpl = isset($params['selectOuterTpl']) ? getTpl($params['selectOuterTpl']) : self::$templates['selectOuterTpl'];
 
 		$result=$modx->db->query('SELECT COUNT(*) as cnt,value,tmplvarid FROM '.$pr.'site_tmplvar_contentvalues as c
 			LEFT join '.$pr.'site_content as cont ON (cont.id=c.contentid)

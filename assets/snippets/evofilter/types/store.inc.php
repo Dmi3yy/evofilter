@@ -35,8 +35,8 @@ class store{
 		$inparent=!empty($params['parent'])?' AND cont.parent IN('.$params['parent'].')':'';
 		$intemplate=!empty($params['template'])?' AND cont.template='.$params['template']:'';
 
-		$storeTpl = isset($params['storeTpl']) ? $modx->getTpl($params['storeTpl']) : self::$templates['storeTpl'];
-		$storeOuterTpl = isset($params['storeOuterTpl']) ? $modx->getTpl($params['storeOuterTpl']) : self::$templates['storeOuterTpl'];
+		$storeTpl = isset($params['storeTpl']) ? getTpl($params['storeTpl']) : self::$templates['storeTpl'];
+		$storeOuterTpl = isset($params['storeOuterTpl']) ? getTpl($params['storeOuterTpl']) : self::$templates['storeOuterTpl'];
 
 		$result=$modx->db->query('SELECT COUNT(*) as cnt,value,tmplvarid FROM '.$pr.'site_tmplvar_contentvalues as c
 			LEFT join '.$pr.'site_content as cont ON (cont.id=c.contentid)

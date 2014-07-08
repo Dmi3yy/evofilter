@@ -36,8 +36,8 @@ class checkbox{
 		$inparent=!empty($params['parent'])?' AND cont.parent IN('.$params['parent'].')':'';
 		$intemplate=!empty($params['template'])?' AND cont.template='.$params['template']:'';
 
-		$checkboxTpl = isset($params['checkboxTpl']) ? $modx->getTpl($params['checkboxTpl']) : self::$templates['checkboxTpl'];
-		$checkboxOuterTpl = isset($params['checkboxOuterTpl']) ? $modx->getTpl($params['checkboxOuterTpl']) : self::$templates['checkboxOuterTpl'];
+		$checkboxTpl = isset($params['checkboxTpl']) ? getTpl($params['checkboxTpl']) : self::$templates['checkboxTpl'];
+		$checkboxOuterTpl = isset($params['checkboxOuterTpl']) ? getTpl($params['checkboxOuterTpl']) : self::$templates['checkboxOuterTpl'];
 
 		$result=$modx->db->query('SELECT COUNT(*) as cnt,value,tmplvarid FROM '.$pr.'site_tmplvar_contentvalues as c
 			LEFT join '.$pr.'site_content as cont ON (cont.id=c.contentid)
