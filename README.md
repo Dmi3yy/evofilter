@@ -13,6 +13,7 @@
 
 ### Примеры кода: 
 ####Cкрипты:
+
 	<script src="assets/js/bforms_v2.js"></script> 
 	<script src="assets/js/jslider/js/jquery.slider.min.js"></script> 
 	<link   href="assets/js/jslider/js/jquery.slider.min.css" rel="stylesheet"type="text/css" />

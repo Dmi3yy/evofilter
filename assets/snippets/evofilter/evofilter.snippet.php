@@ -10,21 +10,24 @@
  * --добавить проверку что б удалить товары все без цены
  */
 //fix  modx->getTpl;
-if(method_exists($modx,'getTpl')){ 
-   	function getTpl($tpl) {
-   		global $modx;
-   		return $modx->getTpl($tpl);
-   	}
-}else{
-	function getTpl($tpl){
-		global $modx;
-		if(strpos($tpl,'@CODE:')!==false){
-			$tpl=str_replace('@CODE:','',$tpl);
-		}else {
-			$tpl=$modx->getChunk($tpl);
-		}
-		return $tpl;
-	}
+if(!function_exists('getTpl')) {
+
+        if(method_exists($modx,'getTpl')){ 
+                function getTpl($tpl) {
+                        global $modx;
+                        return $modx->getTpl($tpl);
+                }
+        } else {
+                function getTpl($tpl){
+                        global $modx;
+                        if(strpos($tpl,'@CODE:')!==false){
+                                $tpl=str_replace('@CODE:','',$tpl);
+                        }else {
+                                $tpl=$modx->getChunk($tpl);
+                        }
+                        return $tpl;
+                }
+        }
 }
 
 
